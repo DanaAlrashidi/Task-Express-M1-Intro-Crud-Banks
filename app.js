@@ -38,13 +38,16 @@ app.delete("/api/accounts/:id", (req, res) => {
   accounts = accounts.filter((acc) => acc.id !== account.id);
   return res.status(200).json(accounts);
 });
-app.put("/api/accounts", (req, res) => {
-  const { id } = req.params;
+app.put("/api/accounts/:id", (req, res) => {
+  const { id } = req.params.req;
+
   const account = accounts.find((account) => {
     return account.id == id;
   });
   if (!account)
     return res.status(404).json({ msg: `account with ${id} id not found` });
+  account.id = id ? id : account.id;
+
   return res.status(200).json(accounts);
 });
 app.listen(PORT, () => {
