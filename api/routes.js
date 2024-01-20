@@ -1,7 +1,7 @@
 const express = require("express");
 const {
   getAccounts,
-  addAccounts,
+  createAccount,
   deleteAccounts,
   updateAccounts,
 } = require("./controllers");
@@ -10,10 +10,10 @@ const router = express.Router();
 
 router.get("/", getAccounts);
 
-router.post("/", addAccounts);
+router.post("/", createAccount);
 
-router.delete("/:id", deleteAccounts);
+router.delete("/:_id", deleteAccounts);
 
-router.put("/:id", updateAccounts);
+router.put("/:_id", updateAccounts);
 
 module.exports = router;
